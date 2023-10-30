@@ -10,11 +10,10 @@ public class BinarySearchTreeDriver {
             String command = scanner.nextLine();
             switch (command) {
                 case "p":
-                    System.out.print("In-order: ");
-                    bst.inOrder();
-                    System.out.println();
+                    printList(bst);
                     break;
                 case "i":
+                    printList(bst);
                     System.out.print("Enter a number to insert: ");
                     int insertValue = scanner.nextInt();
                     scanner.nextLine(); // Consume the newline character
@@ -23,8 +22,10 @@ public class BinarySearchTreeDriver {
                     } else {
                         bst.insert(insertValue);
                     }
+                    printList(bst);
                     break;
                 case "r":
+                    printList(bst);
                     System.out.print("Enter a number to search: ");
                     int searchValue = scanner.nextInt();
                     scanner.nextLine(); // Consume the newline character
@@ -35,6 +36,7 @@ public class BinarySearchTreeDriver {
                     }
                     break;
                 case "d":
+                    printList(bst);
                     System.out.print("Enter a number to delete: ");
                     int deleteValue = scanner.nextInt();
                     scanner.nextLine(); // Consume the newline character
@@ -43,6 +45,7 @@ public class BinarySearchTreeDriver {
                     } else {
                         System.out.println("The number is not present in the tree");
                     }
+                    printList(bst);
                     break;
                 case "l":
                     int leafCount = bst.getNumLeafNodes();
@@ -53,6 +56,7 @@ public class BinarySearchTreeDriver {
                     bst.getSingleParent();
                     break;
                 case "c":
+                    printList(bst);
                     System.out.print("Enter a number: ");
                     int cousinValue = scanner.nextInt();
                     scanner.nextLine(); // Consume the newline character
@@ -68,5 +72,10 @@ public class BinarySearchTreeDriver {
                     break;
             }
         }
+    }
+    private static <T extends Comparable<T>> void printList(BinarySearchTree<T> bst) {
+        System.out.print("In-order: ");
+        bst.inOrder();
+        System.out.println();
     }
 }
