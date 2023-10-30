@@ -2,7 +2,29 @@ import java.util.Scanner;
 
 public class BinarySearchTreeDriver {
     public static void main(String[] args) {
-        BinarySearchTree<Integer> bst = new BinarySearchTree<>();
+        Scanner keyboard = new Scanner(System.in);
+        System.out.println("Enter list type (i - int, d - double, s - string): ");
+        String type = keyboard.next();
+        switch (type) {
+            case "i":
+                BinarySearchTreeDriver.<Integer>genericRun();
+                break;
+
+            case "d":
+                BinarySearchTreeDriver.<Double>genericRun();
+                break;
+
+            case "s":
+                BinarySearchTreeDriver.<String>genericRun();
+        
+            default:
+                break;
+        }
+        keyboard.close();  
+    }
+        
+        private static <T extends Comparable<T>> void genericRun() {
+        BinarySearchTree<T> bst = new BinarySearchTree<>();
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
@@ -14,8 +36,8 @@ public class BinarySearchTreeDriver {
                     break;
                 case "i":
                     printList(bst);
-                    System.out.print("Enter a number to insert: ");
-                    int insertValue = scanner.nextInt();
+                    System.out.print("Enter a value to insert: ");
+                    T insertValue = (T)scanner.next();
                     scanner.nextLine(); // Consume the newline character
                     if (bst.retrieve(insertValue)) {
                         System.out.println("The item already exists in the tree.");
@@ -26,8 +48,8 @@ public class BinarySearchTreeDriver {
                     break;
                 case "r":
                     printList(bst);
-                    System.out.print("Enter a number to search: ");
-                    int searchValue = scanner.nextInt();
+                    System.out.print("Enter a value to search: ");
+                    T searchValue = (T)scanner.next();
                     scanner.nextLine(); // Consume the newline character
                     if (bst.retrieve(searchValue)) {
                         System.out.println("Item is present in the tree");
@@ -37,8 +59,8 @@ public class BinarySearchTreeDriver {
                     break;
                 case "d":
                     printList(bst);
-                    System.out.print("Enter a number to delete: ");
-                    int deleteValue = scanner.nextInt();
+                    System.out.print("Enter a value to delete: ");
+                    T deleteValue = (T)scanner.next();
                     scanner.nextLine(); // Consume the newline character
                     if (bst.retrieve(deleteValue)) {
                         bst.delete(deleteValue);
@@ -58,10 +80,10 @@ public class BinarySearchTreeDriver {
                 case "c":
                     printList(bst);
                     System.out.print("Enter a number: ");
-                    int cousinValue = scanner.nextInt();
+                    T cousinValue = (T)scanner.next();
                     scanner.nextLine(); // Consume the newline character
                     System.out.print(cousinValue + " cousins: ");
-                    bst.getCousins(new BinarySearchTree.Node<Integer>(cousinValue));
+                    bst.getCousins(new BinarySearchTree.Node<T>(cousinValue));
                     System.out.println();
                     break;
                 case "q":
