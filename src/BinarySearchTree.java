@@ -1,6 +1,6 @@
 class BinarySearchTree<T extends Comparable<T>> {
     
-    private static class Node<T> {
+    public static class Node<T> {
         T key;
         Node<T> left;
         Node<T> right;
@@ -16,6 +16,10 @@ class BinarySearchTree<T extends Comparable<T>> {
 
     public BinarySearchTree() {
         root = null;
+    }
+
+    public Node<T> getRoot() {
+        return root;
     }
 
     public void insert(T key) {
@@ -117,6 +121,17 @@ class BinarySearchTree<T extends Comparable<T>> {
         }
         getSingleParentRecursive(current.left);
         getSingleParentRecursive(current.right);
+    }
+
+    private int countChildren(Node<T> node) {
+        int count = 0;
+        if (node.left != null) {
+            count++;
+        }
+        if (node.right != null) {
+            count++;
+        }
+        return count;
     }
 
     public int getNumLeafNodes() {

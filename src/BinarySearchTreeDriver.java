@@ -49,14 +49,15 @@ public class BinarySearchTreeDriver {
                     System.out.println("The number of leaf nodes are " + leafCount);
                     break;
                 case "s":
-                    System.out.println("Single Parents: " + findSingleParents(bst.getRoot()));
+                    System.out.println("Single Parents: "); 
+                    bst.getSingleParent();
                     break;
                 case "c":
                     System.out.print("Enter a number: ");
                     int cousinValue = scanner.nextInt();
                     scanner.nextLine(); // Consume the newline character
                     System.out.print(cousinValue + " cousins: ");
-                    printCousins(bst.getRoot(), cousinValue);
+                    bst.getCousins(new BinarySearchTree.Node<Integer>(cousinValue));
                     System.out.println();
                     break;
                 case "q":
@@ -68,3 +69,4 @@ public class BinarySearchTreeDriver {
             }
         }
     }
+}
