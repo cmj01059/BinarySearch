@@ -1,3 +1,5 @@
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class BinarySearchTreeDriver {
@@ -5,17 +7,18 @@ public class BinarySearchTreeDriver {
         Scanner keyboard = new Scanner(System.in);
         System.out.println("Enter list type (i - int, d - double, s - string): ");
         String type = keyboard.next();
+        File input = new File(args[0]);
         switch (type) {
             case "i":
-                BinarySearchTreeDriver.<Integer>genericRun();
+                BinarySearchTreeDriver.<Integer>genericRun(input);
                 break;
 
             case "d":
-                BinarySearchTreeDriver.<Double>genericRun();
+                BinarySearchTreeDriver.<Double>genericRun(input);
                 break;
 
             case "s":
-                BinarySearchTreeDriver.<String>genericRun();
+                BinarySearchTreeDriver.<String>genericRun(input);
         
             default:
                 break;
@@ -23,9 +26,20 @@ public class BinarySearchTreeDriver {
         keyboard.close();  
     }
         
-        private static <T extends Comparable<T>> void genericRun() {
+        private static <T extends Comparable<T>> void genericRun(File input) {
         BinarySearchTree<T> bst = new BinarySearchTree<>();
         Scanner scanner = new Scanner(System.in);
+         try {
+                Scanner fileReader = new Scanner(input);
+                while (fileReader.hasNext()) {
+                    T item = (T)fileReader.next();
+                    System.out.println(item);
+                    bst.insert(item);
+                }
+            fileReader.close();
+        } catch (FileNotFoundException fnfe) {
+            System.out.println("File not found.");
+        }
 
         while (true) {
             System.out.print("Enter a command: ");
