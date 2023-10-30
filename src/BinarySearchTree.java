@@ -26,23 +26,18 @@ public class BinarySearchTree<T extends Comparable<T>> {
         if (root == null) {
             root = new Node<T>(item);
         } else {
-            insertRecursive(item, root);
+            Node<T> current = root;
+        while (current != null) {
+            int compVal = item.compareTo(current.key);
+            if (compVal < 0) {
+                current = current.left;
+            } else if (compVal > 0) {
+                current = current.right;
+            }
         }
-   }
-
-   private void insertRecursive(T item, Node<T> current) {
-        int compVal = item.compareTo(current.key);
-        if (compVal < 0) {
-            if (current.left == null) {
-                current.left = new Node<T>(item);
-            } else insertRecursive(item, current.left);
-        } else if (compVal > 0) {
-            if (current.right == null) {
-                current.right = new Node<T>(item);
-            } else insertRecursive(item, current.right);
-        }
-   }
-    
+        current = new Node<T>(item);
+    }
+}
 
     public void delete(T key) {
         root = deleteRecursive(root, key);
