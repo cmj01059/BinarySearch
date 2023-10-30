@@ -1,4 +1,4 @@
-class BinarySearchTree<T extends Comparable<T>> {
+public class BinarySearchTree<T extends Comparable<T>> {
     
     public static class Node<T> {
         T key;
@@ -25,21 +25,21 @@ class BinarySearchTree<T extends Comparable<T>> {
     public void insert(T key) {
         root = insertRecursive(root, key);
     }
-
+    
     private Node<T> insertRecursive(Node<T> current, T key) {
         if (current == null) {
             return new Node<>(key);
         }
-
+    
         int cmp = key.compareTo(current.key);
         if (cmp < 0) {
             current.left = insertRecursive(current.left, key);
         } else if (cmp > 0) {
             current.right = insertRecursive(current.right, key);
         }
-
         return current;
     }
+    
 
     public void delete(T key) {
         root = deleteRecursive(root, key);
@@ -79,7 +79,7 @@ class BinarySearchTree<T extends Comparable<T>> {
         }
 
         int cmp = item.compareTo(current.key);
-        if (cmp < 0) {
+        if (cmp <= 0) {
             return retrieveRecursive(current.left, item);
         } else if (cmp > 0) {
             return retrieveRecursive(current.right, item);

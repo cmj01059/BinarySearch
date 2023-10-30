@@ -23,9 +23,8 @@ public class BinarySearchTreeDriver {
             default:
                 break;
         }
-        keyboard.close();  
+        keyboard.close();
     }
-        
         private static <T extends Comparable<T>> void genericRun(File input) {
         BinarySearchTree<T> bst = new BinarySearchTree<>();
         Scanner scanner = new Scanner(System.in);
@@ -33,14 +32,19 @@ public class BinarySearchTreeDriver {
                 Scanner fileReader = new Scanner(input);
                 while (fileReader.hasNext()) {
                     T item = (T)fileReader.next();
-                    System.out.println(item);
                     bst.insert(item);
                 }
             fileReader.close();
         } catch (FileNotFoundException fnfe) {
             System.out.println("File not found.");
         }
-
+        System.out.println("Commands: ");
+        System.out.println("(i) - Insert Item");
+        System.out.println("(d) - Delete Item");
+        System.out.println("(p) - Print Tree");
+        System.out.println("(r) - Retrieve Item");
+        System.out.println("(l) - Count Leaf Nodes (s) - Find Single Parents (c) - Find Cousins");
+        System.out.println("(q) - Quit program");
         while (true) {
             System.out.print("Enter a command: ");
             String command = scanner.nextLine();
@@ -109,6 +113,7 @@ public class BinarySearchTreeDriver {
             }
         }
     }
+
     private static <T extends Comparable<T>> void printList(BinarySearchTree<T> bst) {
         System.out.print("In-order: ");
         bst.inOrder();
