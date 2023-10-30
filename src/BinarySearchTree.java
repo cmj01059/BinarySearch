@@ -37,7 +37,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
         } else if (cmp > 0) {
             current.right = insertRecursive(current.right, key);
         }
-        return current;
+        return null;
     }
     
 
