@@ -98,7 +98,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
     private void inOrderTraversal(Node<T> current) {
         if (current != null) {
             inOrderTraversal(current.left);
-            System.out.print(current.key);
+            System.out.print(current.key + " ");
             inOrderTraversal(current.right);
         }
     }
