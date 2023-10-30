@@ -27,11 +27,17 @@ public class BinarySearchTree<T extends Comparable<T>> {
             root = new Node<T>(item);
         } else {
             Node<T> current = root;
-        while (current != null) {
+        while (current.key.compareTo(item) != 0) {
             int compVal = item.compareTo(current.key);
             if (compVal < 0) {
+                if (current.left == null) {
+                    current.left = new Node<T>(item);
+                }
                 current = current.left;
             } else if (compVal > 0) {
+                if (current.right == null) {
+                    current.right = new Node<T>(item);
+                }
                 current = current.right;
             }
         }
