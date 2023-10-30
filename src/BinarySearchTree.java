@@ -23,21 +23,20 @@ public class BinarySearchTree<T extends Comparable<T>> {
     }
 
     public void insert(T key) {
-        root = insertRecursive(root, key);
+        insertRecursive(root, key);
     }
     
-    private Node<T> insertRecursive(Node<T> current, T key) {
+    private void insertRecursive(Node<T> current, T key) {
         if (current == null) {
-            return new Node<>(key);
+            current = new Node<>(key);
         }
     
         int cmp = key.compareTo(current.key);
         if (cmp < 0) {
-            current.left = insertRecursive(current.left, key);
-        } else if (cmp > 0) {
-            current.right = insertRecursive(current.right, key);
-        }
-        return root;
+            insertRecursive(current.left, key);
+        } else {
+            insertRecursive(current.right, key);
+        } 
     }
     
 
