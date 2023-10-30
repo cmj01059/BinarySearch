@@ -37,6 +37,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
         } else {
             insertRecursive(current.right, key);
         } 
+        return;
     }
     
 
