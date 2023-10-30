@@ -25,26 +25,31 @@ public class BinarySearchTreeDriver {
         }
         keyboard.close();
     }
-        private static <T extends Comparable<T>> void genericRun(File input) {
+    private static <T extends Comparable<T>> void genericRun(File input) {
         BinarySearchTree<T> bst = new BinarySearchTree<>();
         Scanner scanner = new Scanner(System.in);
-         try {
-                Scanner fileReader = new Scanner(input);
-                while (fileReader.hasNext()) {
-                    T item = (T)fileReader.next();
-                    bst.insert(item);
-                }
+    
+        try {
+            Scanner fileReader = new Scanner(input);
+            while (fileReader.hasNext()) {
+                T item = (T)fileReader.next();
+                bst.insert(item);
+            }
             fileReader.close();
         } catch (FileNotFoundException fnfe) {
             System.out.println("File not found.");
         }
+    
         System.out.println("Commands: ");
         System.out.println("(i) - Insert Item");
         System.out.println("(d) - Delete Item");
         System.out.println("(p) - Print Tree");
         System.out.println("(r) - Retrieve Item");
-        System.out.println("(l) - Count Leaf Nodes (s) - Find Single Parents (c) - Find Cousins");
+        System.out.println("(l) - Count Leaf Nodes");
+        System.out.println("(s) - Find Single Parents");
+        System.out.println("(c) - Find Cousins");
         System.out.println("(q) - Quit program");
+    
         while (true) {
             System.out.print("Enter a command: ");
             String command = scanner.nextLine();
@@ -56,7 +61,7 @@ public class BinarySearchTreeDriver {
                     printList(bst);
                     System.out.print("Enter a value to insert: ");
                     T insertValue = (T)scanner.next();
-                    scanner.nextLine(); // Consume the newline character
+                    scanner.nextLine();
                     if (bst.retrieve(insertValue)) {
                         System.out.println("The item already exists in the tree.");
                     } else {

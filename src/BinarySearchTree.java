@@ -33,11 +33,10 @@ public class BinarySearchTree<T extends Comparable<T>> {
     
         int cmp = key.compareTo(current.key);
         if (cmp < 0) {
-            current.left = insertRecursive(current.left, key);
+            return insertRecursive(current.left, key);
         } else {
-            current.right = insertRecursive(current.right, key);
+            return insertRecursive(current.right, key);
         } 
-        return current;
     }
     
 
@@ -95,7 +94,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
     private void inOrderTraversal(Node<T> current) {
         if (current != null) {
             inOrderTraversal(current.left);
-            System.out.println(current.key);
+            System.out.print(current.key);
             inOrderTraversal(current.right);
         }
     }
